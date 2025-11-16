@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const videoSection = document.querySelector(".mandap-video");
-  const music = new Audio("assets/music/mandap-theme.mp3"); // update filename if different
+  const music = new Audio("https://res.cloudinary.com/dz6w3olo0/video/upload/v1763308968/mandap-theme_i6cm5i.mp3"); // update filename if different
   music.loop = true;
   music.volume = 0.2; // low volume
 
@@ -216,18 +216,18 @@ const inviteSection = document.querySelector("#voiceInvite");
 const voiceToggle = document.querySelector("#voiceToggle");
 
 const audioFiles = [
-  "assets/music/narration/01-groom-intro.mp3",
-  "assets/music/narration/02-bride-intro.mp3",
-  "assets/music/narration/03-groom-blessing.mp3",
-  "assets/music/narration/04-bride-dream.mp3",
-  "assets/music/narration/05-groom-invite.mp3",
-  "assets/music/narration/06-bride-invite.mp3",
-  "assets/music/narration/07-groom-love.mp3",
-  "assets/music/narration/08-bride-love.mp3",
-  "assets/music/narration/09-groom-final.mp3",
-  "assets/music/narration/10-bride-final.mp3",
-  "assets/music/narration/11-groom-together.mp3", // 11
-  "assets/music/narration/12-bride-together.mp3"   // 12
+  "https://res.cloudinary.com/dz6w3olo0/video/upload/v1763309181/01-groom-intro_atb7y1.mp3",
+  "https://res.cloudinary.com/dz6w3olo0/video/upload/v1763309185/02-bride-intro_a1pws0.mp3",
+  "https://res.cloudinary.com/dz6w3olo0/video/upload/v1763309188/03-groom-blessing_rktrml.mp3",
+  "https://res.cloudinary.com/dz6w3olo0/video/upload/v1763309181/04-bride-dream_qmsa0p.mp3",
+  "https://res.cloudinary.com/dz6w3olo0/video/upload/v1763309180/05-groom-invite_ootemr.mp3",
+  "https://res.cloudinary.com/dz6w3olo0/video/upload/v1763309202/06-bride-invite_edebny.mp3",
+  "https://res.cloudinary.com/dz6w3olo0/video/upload/v1763309188/07-groom-love_kr92uh.mp3",
+  "https://res.cloudinary.com/dz6w3olo0/video/upload/v1763309193/08-bride-love_nnyegp.mp3",
+  "https://res.cloudinary.com/dz6w3olo0/video/upload/v1763309192/09-groom-final_noiy4n.mp3",
+  "https://res.cloudinary.com/dz6w3olo0/video/upload/v1763309192/10-bride-final_ozzcxd.mp3",
+  "https://res.cloudinary.com/dz6w3olo0/video/upload/v1763309195/11-groom-together_edfzya.mp3", // 11
+  "https://res.cloudinary.com/dz6w3olo0/video/upload/v1763309194/12-bride-together_plrqg3.mp3"   // 12
 ];
 
 // ⭐ Main audio
