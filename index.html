@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+
+  <title>Wedding Invitation | Arnab & Purnima</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      display: block;
+      background: #e8d5b7;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('/assets/images/back-img.jpg') repeat-y center top;
+      background-size: cover;
+      filter: blur(3px) brightness(1.05);
+      animation: scrollBackground 25s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes scrollBackground {
+      from { background-position: center 0; }
+      to   { background-position: center 100%; }
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 20px;
+    }
+
+    .cover-card {
+      position: relative;
+      width: 320px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 30px gold;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .cover-card img {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 20px gold; }
+      to   { box-shadow: 0 0 40px orange; }
+    }
+
+    .guest-name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 26px;
+      font-weight: 600;
+      color: #8a5a00;
+      text-shadow: 0 0 6px rgba(255, 70, 70, 0.6);
+      background: linear-gradient(90deg, #ff3b3f, #b3001b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .overlay-box {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.45);
+      padding: 10px 15px;
+      border-radius: 12px;
+      backdrop-filter: blur(3px);
+      box-shadow: 0 0 12px rgba(255, 220, 150, 0.9);
+    }
+
+    .open-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 25px;
+      background: linear-gradient(45deg, #ff9900, #ff4d00);
+      color: white;
+      font-weight: 600;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .open-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #ff9900;
+    }
+
+    /* Side Videos */
+    .side-video {
+      position: fixed;
+      bottom: 20px;
+      width: 160px;
+      height: 180px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(255, 190, 120, 0.85);
+      z-index: 5;
+      backdrop-filter: blur(4px);
+      border: 2px solid rgba(255, 215, 160, 0.7);
+      animation: softGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes softGlow {
+      from { box-shadow: 0 0 15px rgba(255, 190, 120, 0.6); }
+      to   { box-shadow: 0 0 35px rgba(255, 170, 90, 0.95); }
+    }
+
+    .video-left  { left: 20px; }
+    .video-right { right: 20px; }
+
+    .side-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="background"></div>
+
+  <!-- Groom Video -->
+  <div class="side-video video-left">
+    <video id="groomVid" src="/assets/images/groom-intro.mp4" autoplay playsinline></video>
+  </div>
+
+  <!-- Bride Video -->
+  <div class="side-video video-right">
+    <video id="brideVid" src="/assets/images/bride-intro.mp4" autoplay playsinline></video>
+  </div>
+
+  <audio id="groomAudio" src="/assets/music/groom-in.mp3"></audio>
+  <audio id="brideAudio" src="/assets/music/bride-in.mp3"></audio>
+
+  <div class="content">
+    <div class="cover-card">
+      <img src="/assets/images/cover-bg.jpg" alt="Wedding Cover Card" />
+      <div class="overlay-box">
+        <p class="guest-name"><i>_________ ________</i></p>
+        <button class="open-btn" onclick="openInvitation()">Open Invitation</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    const guestName = getQueryParam('name');
+
+    if (guestName) {
+      document.querySelector('.guest-name').innerHTML =
+        `<i>(To: ${decodeURIComponent(guestName)})</i>`;
+    }
+
+    let firstClickDone = false;
+
+    const groomVid = document.getElementById("groomVid");
+    const brideVid = document.getElementById("brideVid");
+    const groomAudio = document.getElementById("groomAudio");
+    const brideAudio = document.getElementById("brideAudio");
+
+    groomVid.pause();
+    brideVid.pause();
+    groomVid.muted = true;
+    brideVid.muted = true;
+
+    function openInvitation() {
+      if (!firstClickDone) {
+        firstClickDone = true;
+
+        groomVid.muted = false;
+        brideVid.muted = false;
+
+        groomVid.currentTime = 0;
+        brideVid.currentTime = 0;
+        groomAudio.currentTime = 0;
+        brideAudio.currentTime = 0;
+
+        groomVid.play();
+        brideVid.play();
+        groomAudio.play();
+        brideAudio.play();
+
+        document.querySelector('.open-btn').textContent = "Enter Invitation";
+        return;
+      }
+
+      window.location.href = "main.html";
+    }
+
+    function stopAudios() {
+      groomAudio.pause();
+      brideAudio.pause();
+      groomAudio.currentTime = 0;
+      brideAudio.currentTime = 0;
+    }
+
+    groomVid.onpause = stopAudios;
+    brideVid.onpause = stopAudios;
+    groomVid.onended = stopAudios;
+    brideVid.onended = stopAudios;
+
+    window.addEventListener("beforeunload", () => {
+      groomAudio.pause();
+      brideAudio.pause();
+    });
+  </script>
+
+</body>
+</html>
